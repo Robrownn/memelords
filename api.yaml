@@ -1,0 +1,55 @@
+openapi: "3.0.0"
+
+info:
+  version: 1.0.0
+  title: Memelords API
+  description: Backend for Memelords v2
+  license:
+    name: MIT
+
+servers:
+  - url: http://memelords.io/v1
+
+paths:
+  /memes:
+    get:
+      summary: Get all memes
+      operationID: getMemes
+      tags:
+        - memes
+      responses:
+        '200': 
+          description: Paged array of memes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Memes"
+    post:
+      summary: Post new meme
+      operationID: postMeme
+      tags:
+        - memes
+      responses:
+        '201':
+          description: Meme posted successfully
+
+
+components:
+  schemas:
+    Meme:
+      required:
+        - id
+        - url
+        - caption
+      properties:
+        id:
+          type: integer
+          format: int32
+        url:
+          type: string
+        caption:
+          type: string
+    Memes:
+      type: array
+      items:
+        $ref: "#/components/schemas/Meme"
