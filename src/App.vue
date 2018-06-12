@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>Memelords.io</h1>
+    <MemeLogin></MemeLogin>
     <MemeCreator/>
     <MemeViewer></MemeViewer>
   </div>
@@ -9,12 +10,14 @@
 <script>
 import MemeCreator from './components/MemeCreator.vue'
 import MemeViewer from './components/MemeViewer.vue'
+import MemeLogin from './components/MemeLogin.vue'
 
 export default {
   name: 'app',
   components: {
     MemeCreator,
-    MemeViewer
+    MemeViewer,
+    MemeLogin
   }
 }
 </script>
