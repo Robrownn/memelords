@@ -23,8 +23,12 @@ export default {
             pageSize: 10
         }
     },
-    created() {
-        axios.get('192.168.2.45:5000/memes')
+    mounted() {
+        axios.get('https://memelords.herokuapp.com/memes?next-page=1&sort=desc', {
+            headers: {
+                "Authorization": this.$store.state.jwt
+            }
+        })
         .then(response => {
             this.memes = response.data
         })
