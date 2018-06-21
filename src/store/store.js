@@ -6,19 +6,20 @@ Vue.use(Vuex)
 const state = {
     jwt: '',
     username: '',
-    user_id: 0
+    user_id: 0,
+    loggedIn: false
 }
 
 const mutations = {
-    login (state, jwt, username, user_id) {
+    login(state, jwt, username) {
         state.jwt = jwt
         state.username = username
-        state.user_id = user_id
+        state.loggedIn = true
     },
     logout(state) {
         state.jwt = ''
         state.username = ''
-        state.user_id = 0
+        state.loggedIn = false
     }
 }
 

@@ -11,9 +11,11 @@
 import MemeCreator from './components/MemeCreator.vue'
 import MemeViewer from './components/MemeViewer.vue'
 import MemeLogin from './components/MemeLogin.vue'
+import store from './store/store'
 
 export default {
   name: 'app',
+  store,
   components: {
     MemeCreator,
     MemeViewer,
