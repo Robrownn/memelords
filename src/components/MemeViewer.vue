@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="this.$store.state.loggedIn"> <!-- Only show if user is logged in -->
         <Meme v-for="meme in memes" :key="meme.id" :url="meme.url" :caption="meme.caption"/>
         <button @click="prevPage">Previous Page</button>
         <button @click="nextPage">Next Page</button>
@@ -23,8 +23,12 @@ export default {
             pageSize: 10
         }
     },
-    created() {
-        axios.get('192.168.2.45:5000/memes')
+    mounted() {
+        axios.get('https://memelords.herokuapp.com/memes?next-page=1&sort=desc', {
+            headers: {
+                "Authorization": this.$store.state.jwt
+            }
+        })
         .then(response => {
             this.memes = response.data
         })
@@ -34,10 +38,10 @@ export default {
     },
     methods: {
         prevPage: function(event) {
-            alert('previous page')
+            alert('previous page' + event)
         },
         nextPage: function(event) {
-            alert('next page')
+            alert('next page' + event)
         }  
     }
 }

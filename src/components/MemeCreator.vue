@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" v-if="this.$store.state.loggedIn"> <!-- only show if user is logged in -->
     <input v-model="meme.url" type="text" placeholder="enter url here"/>
     <input v-model="meme.caption" type="text" placeholder="caption"/>
     <button @click="submit">Submit</button>
