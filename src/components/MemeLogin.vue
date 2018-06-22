@@ -4,6 +4,7 @@
         <input v-model="user.name" type="text" placeholder="Username"/>
         <input v-model="user.password" type="password" placeholder="Password"/>
         <button @click="login">Login</button>
+        <button @click="register">Register</button>
         <hr />
         </div>
 
@@ -31,6 +32,14 @@ export default {
             then((response) => {
                 if (response.status == 200) { //Logged in OK
                     this.$store.commit('login', response.data.jwt, this.user.name) //Commit auth credentials to store
+                }
+            })
+        },
+        register: function() {
+            axios.post("https://memelords.herokuapp.com/register?username=" + this.user.name + "&password=" + this.user.password).
+            then((response) => {
+                if (response.status == 200) {
+                    this.$store.commit('login', response.data.jwt, this.user.name)
                 }
             })
         }
